@@ -31,12 +31,12 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@RequestBody Usuario usurio) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(usurio));
+    public ResponseEntity<?> crear(@RequestBody Usuario usuario) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(usuario));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> editar(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> editar(@RequestBody Usuario usuario, @PathVariable Long id) {
         Optional<Usuario> o = service.porId(id);
 
         if (o.isPresent()) {
@@ -45,6 +45,16 @@ public class UsuarioController {
             usuarioDb.setEmail(usuario.getEmail());
             usuarioDb.setPassword(usuario.getPassword());
             return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(usuarioDb));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
+        Optional<Usuario> o = service.porId(id);
+        if (o.isPresent()) {
+            service.eliminar(id);
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
