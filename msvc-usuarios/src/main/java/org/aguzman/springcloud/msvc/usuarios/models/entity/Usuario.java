@@ -7,7 +7,7 @@ import javax.websocket.ClientEndpoint;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
-
+    //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;

@@ -6,6 +6,10 @@ import org.hibernate.service.spi.OptionallyManageable;
 import java.util.List;
 import java.util.Optional;
 
+
+//las clases service se usa para la logica de negocio, dao, objetos repositorios, hace transacciones
+
+
 public interface UsuarioService {
 
     List<Usuario> listar();
