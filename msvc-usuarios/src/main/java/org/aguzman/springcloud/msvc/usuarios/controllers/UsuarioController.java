@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController //es para trabajar cpn api rest, handller, request, put, get, delete, devuelve en json
+@RestController //es para trabajar con api rest, handller, request, put, get, delete, devuelve en json
 public class UsuarioController {
 
     @Autowired
