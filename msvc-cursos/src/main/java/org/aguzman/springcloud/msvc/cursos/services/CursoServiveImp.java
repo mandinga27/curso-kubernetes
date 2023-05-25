@@ -1,5 +1,6 @@
 package org.aguzman.springcloud.msvc.cursos.services;
 
+import org.aguzman.springcloud.msvc.cursos.clients.UsuarioClientRest;
 import org.aguzman.springcloud.msvc.cursos.models.Usuario;
 import org.aguzman.springcloud.msvc.cursos.models.entity.Curso;
 import org.aguzman.springcloud.msvc.cursos.repositories.CursoRepository;
@@ -14,6 +15,9 @@ import java.util.Optional;
 public class CursoServiveImp implements CursoService{
    @Autowired
    private CursoRepository repository;
+
+   @Autowired
+   private UsuarioClientRest cliente; //aca se obtienen los datos con el otro ms
 
     @Override
     @Transactional(readOnly = true)
