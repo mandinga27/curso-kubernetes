@@ -1,5 +1,6 @@
 package org.aguzman.springcloud.msvc.cursos.services;
 
+import org.aguzman.springcloud.msvc.cursos.models.Usuario;
 import org.aguzman.springcloud.msvc.cursos.models.entity.Curso;
 import org.aguzman.springcloud.msvc.cursos.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,21 @@ public class CursoServiveImp implements CursoService{
     public void eliminar(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Usuario> eliminarUsuarioCurso(Usuario usuario, Long cursoId) {
+        return Optional.empty();
+    }
+
+
 }
