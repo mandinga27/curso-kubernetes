@@ -11,7 +11,7 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = ("el campo nombre no puede ser vacio"))
+    @NotEmpty
     private String nombre;
 
     public Long getId() {
