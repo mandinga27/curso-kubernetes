@@ -13,15 +13,16 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @NotEmpty(message = "nombre no puede ser vacio")
+    @NotEmpty
     private String nombre;
 
-    @NotEmpty(message = "email no puede  ser vacio")
-    @Email(message = "debe ser un email valido")
+    @NotEmpty
+    @Email
     @Column(unique = true)
     private String email;
 
-    @NotEmpty(message = "password no puede ser vacio")
+    //notblank no permite vacio y espacios
+    @NotBlank
     private String password;
 
     public Long getId() {

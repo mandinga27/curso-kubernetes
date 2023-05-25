@@ -1,6 +1,7 @@
 package org.aguzman.springcloud.msvc.cursos.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -11,7 +12,8 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    //notblank no permite vacio y espacios
+    @NotBlank
     private String nombre;
 
     public Long getId() {
