@@ -2,7 +2,8 @@ package org.aguzman.springcloud.msvc.usuarios.models.entity;
 
 
 import javax.persistence.*;
-import javax.websocket.ClientEndpoint;
+import javax.validation.constraints.*;
+
 
 @Entity
 @Table(name = "usuarios")
@@ -12,11 +13,15 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    @NotEmpty(message = "nombre no puede ser vacio")
     private String nombre;
 
+    @NotEmpty(message = "email no puede  ser vacio")
+    @Email(message = "debe ser un email valido")
     @Column(unique = true)
     private String email;
 
+    @NotEmpty(message = "password no puede ser vacio")
     private String password;
 
     public Long getId() {
