@@ -33,8 +33,8 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, BindingResult result) {
-
-        if (service.porEmail(usuario.getEmail()).isPresent()) {
+        //si es distinto que vacio
+        if (!usuario.getEmail().isEmpty() && service.porEmail(usuario.getEmail()).isPresent()) {
             return ResponseEntity.badRequest()
                     .body(Collections
                             .singletonMap("mensaje: ", "Ya existe un usuario con ese email"));
