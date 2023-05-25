@@ -1,6 +1,7 @@
 package org.aguzman.springcloud.msvc.cursos.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "cursos")
@@ -10,6 +11,7 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = ("el campo nombre no puede ser vacio"))
     private String nombre;
 
     public Long getId() {
