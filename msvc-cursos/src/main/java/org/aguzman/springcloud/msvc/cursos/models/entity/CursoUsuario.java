@@ -1,7 +1,6 @@
-package org.aguzman.springcloud.msvc.cursos.entity;
+package org.aguzman.springcloud.msvc.cursos.models.entity;
 
 import javax.persistence.*;
-import java.util.HashMap;
 
 @Entity
 @Table(name = "cursos_usuarios")

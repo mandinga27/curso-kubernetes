@@ -1,6 +1,6 @@
 package org.aguzman.springcloud.msvc.cursos.services;
 
-import org.aguzman.springcloud.msvc.cursos.entity.Curso;
+import org.aguzman.springcloud.msvc.cursos.models.entity.Curso;
 
 import java.util.List;
 import java.util.Optional;
