@@ -39,4 +39,10 @@ public class UsuarioSeviceImp implements UsuarioService {
     public void eliminar(Long id) {
         repository.deleteById(id);
     }
+
+    //metodo validacion por email
+    @Override
+    public Optional<Usuario> porEmail(String email) {
+        return repository.findByEmail(email);
+    }
 }
