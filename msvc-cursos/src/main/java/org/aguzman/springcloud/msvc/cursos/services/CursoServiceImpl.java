@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CursoServiceImpl implements CursoService{
@@ -30,6 +31,25 @@ public class CursoServiceImpl implements CursoService{
     @Transactional(readOnly = true)
     public Optional<Curso> porId(Long id) {
         return repository.findById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Curso> porIdConUsuarios(Long id) {
+        Optional<Curso> o = repository.findById(id); //se obtiene el detalle del curso por el id
+        if (o.isPresent()) { //si esta presente
+            Curso curso = o.get(); //se obtiene el curso
+            if (!curso.getCursoUsuarios().isEmpty()) { //si no esta vacio la lista de curso usuario (que tenga ids) se obtienen los cursos
+                //stream es un flujo, programacion funcional usa expresiones lamda. map modifica los datos del flujo por cada elemento por curso usuario
+                List<Long> ids = curso.getCursoUsuarios().stream().map(cu -> cu.getUsuarioId())
+                        .collect(Collectors.toList()); //se convierte string a lista
+
+                List<Usuario> usuarios = client.obtenerAlumnosPorCurso(ids);
+                curso.setUsuarios(usuarios); //se le pasa la lista completa de usuarios con detalle
+            }
+            return Optional.of(curso);
+        }
+        return Optional.empty();
     }
 
     @Override

@@ -41,6 +41,7 @@ public class UsuarioSeviceImpl implements UsuarioService {
     }
 
     @Override
+    @Transactional
     public List<Usuario> listarPorIds(Iterable<Long> ids) {
         return (List<Usuario>) repository.findAllById(ids); //findallbyid por debajo hace una consulta JPA con where column name in (value1,value2)
     }

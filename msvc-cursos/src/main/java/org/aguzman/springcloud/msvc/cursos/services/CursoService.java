@@ -10,6 +10,7 @@ public interface CursoService {
     //un service relaciona con la logica del negocio, en este caso los datos se obtienen de otro servicio
     List<Curso> listar();
     Optional<Curso> porId(Long id);
+    Optional<Curso> porIdConUsuarios(Long id);
     Curso guardar(Curso curso);
     void eliminar(Long id);
 
