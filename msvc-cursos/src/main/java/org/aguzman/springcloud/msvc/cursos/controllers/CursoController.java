@@ -120,6 +120,12 @@ public class CursoController {
         return ResponseEntity.notFound().build();
     }
 
+    @DeleteMapping("/eliminar-curso-usuario/{id}")
+    public ResponseEntity<?> eliminarCursoUsuarioPorId(@PathVariable(name = "id") Long id) {
+        service.eliminarCursoUsuarioPorId(id);
+        return ResponseEntity.noContent().build();
+    }
+
     //metodo para validar, se toma lo que estaba dentro del if->refactor->extraer metodo
     private ResponseEntity<Map<String, String>> validar(BindingResult result) {
         //pasar el json en un arreglo con nombres y valores

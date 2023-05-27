@@ -1,5 +1,6 @@
 package org.aguzman.springcloud.msvc.usuarios.services;
 
+import org.aguzman.springcloud.msvc.usuarios.clients.CursoClienteRest;
 import org.aguzman.springcloud.msvc.usuarios.models.entity.Usuario;
 import org.aguzman.springcloud.msvc.usuarios.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class UsuarioSeviceImpl implements UsuarioService {
     @Autowired //autowired inyeccion de dependencias, cliente dao
     private UsuarioRepository repository;
 
+    @Autowired
+    private CursoClienteRest client;
 
     @Override
     @Transactional(readOnly = true) //manejo de transacciones
@@ -37,7 +40,8 @@ public class UsuarioSeviceImpl implements UsuarioService {
     @Override
     @Transactional
     public void eliminar(Long id) {
-        repository.deleteById(id);
+        repository.deleteById(id); //aca lanza la instruccion de eliminar de la base de datos
+        client.eliminarCursoUsuarioPorId(id);
     }
 
     @Override

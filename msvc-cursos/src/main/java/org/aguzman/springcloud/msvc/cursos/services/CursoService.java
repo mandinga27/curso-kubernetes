@@ -14,6 +14,8 @@ public interface CursoService {
     Curso guardar(Curso curso);
     void eliminar(Long id);
 
+    void eliminarCursoUsuarioPorId(Long id);
+
     //metodos remotos, relacionados al cliente hhtp -> api rest -> comunicacion con el otro ms
     Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId);
 
