@@ -16,6 +16,7 @@ public interface UsuarioService {
     Optional<Usuario> porId(Long id);
     Usuario guardar(Usuario usuario);
     void eliminar(Long id);
+    List<Usuario> listarPorIds(Iterable<Long> ids); //iterable es "como" un arreglo, parte de la pai de collection de java
 
     //primer tipo de validacion haciendo consulta con jpa
     Optional<Usuario> porEmail(String email);

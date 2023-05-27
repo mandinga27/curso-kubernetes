@@ -81,6 +81,11 @@ public class UsuarioController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/usuarios-por-curso")
+    public ResponseEntity<?> obtenerAlumnosPorCurso(@RequestParam List<Long> ids) { //<?> es generico
+        return ResponseEntity.ok(service.listarPorIds(ids));
+    }
+
     //metodo para validar, se toma lo que estaba dentro del if->refactor->extraer metodo
     private ResponseEntity<Map<String, String>> validar(BindingResult result) {
         //pasar el json en un arreglo con nombres y valores

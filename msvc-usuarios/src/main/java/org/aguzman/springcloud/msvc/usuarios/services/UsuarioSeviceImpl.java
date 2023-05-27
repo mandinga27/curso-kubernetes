@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service //estereotipo de component, la decora, es un beans
-public class UsuarioSeviceImp implements UsuarioService {
+public class UsuarioSeviceImpl implements UsuarioService {
 
     @Autowired //autowired inyeccion de dependencias, cliente dao
     private UsuarioRepository repository;
@@ -38,6 +38,11 @@ public class UsuarioSeviceImp implements UsuarioService {
     @Transactional
     public void eliminar(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public List<Usuario> listarPorIds(Iterable<Long> ids) {
+        return (List<Usuario>) repository.findAllById(ids); //findallbyid por debajo hace una consulta JPA con where column name in (value1,value2)
     }
 
     //metodo validacion por email
