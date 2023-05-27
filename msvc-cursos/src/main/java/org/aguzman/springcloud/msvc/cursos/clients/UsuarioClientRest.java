@@ -13,9 +13,9 @@ public interface UsuarioClientRest {
 
     @GetMapping("/{id}")
     //en las interfaces los metodos son publicos por defecto
-    public Usuario detalle(@PathVariable Long id);
+    public Usuario detalle(@PathVariable(value = "id") Long id);
 
     @PostMapping("/")
-    public Usuario crear(@RequestBody Usuario usuario); //devuele un json con el usuario y se transforma en objeto
+    Usuario crear(@RequestBody Usuario usuario); //devuele un json con el usuario y se transforma en objeto
 
 }

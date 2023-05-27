@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CursoServiveImp implements CursoService{
+public class CursoServiceImpl implements CursoService{
    @Autowired
    private CursoRepository repository;
 
    @Autowired
-   private UsuarioClientRest cliente; //aca se obtienen los datos con el otro ms
+   private UsuarioClientRest client; //aca se obtienen los datos con el otro ms
 
     @Override
     @Transactional(readOnly = true)
@@ -45,10 +45,11 @@ public class CursoServiveImp implements CursoService{
     }
 
     @Override
+    @Transactional
     public Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId) {
         Optional<Curso> o = repository.findById(cursoId);
         if (o.isPresent()) {
-            Usuario usuarioMsvc = cliente.detalle(usuario.getId());
+            Usuario usuarioMsvc = client.detalle(usuario.getId());
 
             Curso curso = o.get();
             CursoUsuario cursoUsuario = new CursoUsuario();
@@ -63,10 +64,11 @@ public class CursoServiveImp implements CursoService{
     }
 
     @Override
+    @Transactional
     public Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId) {
         Optional<Curso> o = repository.findById(cursoId);
         if (o.isPresent()) {
-            Usuario usuarioNuevoMsvc = cliente.crear(usuario);
+            Usuario usuarioNuevoMsvc = client.crear(usuario);
 
             Curso curso = o.get();
             CursoUsuario cursoUsuario = new CursoUsuario();
@@ -81,10 +83,11 @@ public class CursoServiveImp implements CursoService{
     }
 
     @Override
+    @Transactional
     public Optional<Usuario> eliminarUsuarioCurso(Usuario usuario, Long cursoId) {
         Optional<Curso> o = repository.findById(cursoId);
         if (o.isPresent()) {
-            Usuario usuarioMsvc = cliente.detalle(usuario.getId());
+            Usuario usuarioMsvc = client.detalle(usuario.getId());
 
             Curso curso = o.get();
             CursoUsuario cursoUsuario = new CursoUsuario();
