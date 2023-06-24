@@ -10,11 +10,20 @@ WORKDIR /app/msvc-usuarios
 #desde curso-kubernetes copiamos el pom.xml a la carpeta app
 COPY ./pom.xml /app
 
-#desde la raiz curso-kubernetes copiamos el proyecto completo, desde la raiz
-COPY ./msvc-usuarios .
+#desde la raiz curso-kubernetes copiamos el proyecto completo, desde la raiz (./
+COPY ./msvc-usuarios/.mvn ./.mvn
 # o ./target/msvc-usuarios-0.0.1-SNAPSHOT.jar/app
+COPY ./msvc-usuarios/mvnw .
+
+COPY ./msvc-usuarios/pom.xml .
 
 #compilamos
+#empaque sin el codigo fuente y skipea los tests
+RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip && rm -r ./target/
+
+#copia la carpeta src en la imagen docker
+COPY ./msvc-usuarios/src ./src
+
 RUN ./mvnw clean package -DskipTests
 
 #el puerto de la app es el 8001
