@@ -61,7 +61,7 @@ public class UsuarioController {
                     service.porEmail(usuario.getEmail()).isPresent()) {
                 return ResponseEntity.badRequest()
                         .body(Collections
-                                .singletonMap("mensaje: ", "Ya existe un usuario con ese email"));
+                                .singletonMap("mensaje: ", "Ya existe un usuario con ese correo electronico"));
             }
             usuarioDb.setNombre(usuario.getNombre());
             usuarioDb.setEmail(usuario.getEmail());
