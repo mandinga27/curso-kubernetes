@@ -1,9 +1,8 @@
-FROM openjdk:11.0.13-jdk
+FROM openjdk:11.0.13-jdk-slim-buster as builder
 #dentro del dockerfile estamos en la raiz del proyecto
 
 #carpeta de trabajo, ahora copiamos el pom de msvc-usuarios(build.gradle
 WORKDIR /app/msvc-usuarios
-
 #se copiara en la carpeta app que es estructura base de las imagenes
             #/ruta en nuestra maquina local   #. ruta en la imagen/contenedor
 
@@ -26,12 +25,19 @@ COPY ./msvc-usuarios/src ./src
 
 RUN ./mvnw clean package -DskipTests
 
+#aca creamos una imagen a partir de una imagen
+FROM openjdk:11.0.13-jdk-slim-buster
+
+WORKDIR /app
+
+COPY --from=builder /app/msvc-usuarios/target/msvc-usuarios-0.0.1-SNAPSHOT.jar .
+
 #el puerto de la app es el 8001
 EXPOSE 8001
 
 #levantar la app cuando se le velanta un contenedor, busca un entry poiny
 #comandos separados por coma
 #estamos en la raiz ./
-ENTRYPOINT ["java", "-jar", "./target/msvc-usuarios-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "msvc-usuarios-0.0.1-SNAPSHOT.jar"]
 
 
