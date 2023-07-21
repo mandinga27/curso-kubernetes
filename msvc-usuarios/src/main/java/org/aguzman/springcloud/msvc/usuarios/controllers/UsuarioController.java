@@ -17,6 +17,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService service;
 
+
     @GetMapping("/")
     public Map<String, List<Usuario>> listar() {
         return Collections.singletonMap("usuarios", service.listar());
