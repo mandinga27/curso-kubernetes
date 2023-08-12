@@ -1,0 +1,48 @@
+//Create Git branch using checkout
+$ git checkout -b <branch-name>
+
+$ git checkout -b feature
+Switched to new branch 'feature'
+
+//Create Git Branch without switching
+$ git branch <branch_name>
+
+$ git checkout <branch_name>
+
+//create a branch named “feature”
+$ git branch feature
+
+//listar ramas
+$ git branch -a
+
+//Create Git Branch from Commit
+$ git checkout -b <branch_name> <commit_sha>
+
+$ git branch <branch_name> <commit_sha>
+
+// get commits SHA from your history
+$ git log --oneline --graph
+
+* 9127753 (HEAD -> master) Commit 3
+* f2fcb99 Commit 2
+* cab6e1b (origin/master) master : initial commit
+
+//create a new Git branch from the second commit (f2fcb99), you would run the following command
+$ git checkout -b feature f2fcb99
+Switched to a new branch named 'feature' 
+
+/Using the “git log” command, you can verify that your branch was created from the second commit of your history.
+$ git log --oneline --graph
+
+* f2fcb99 (HEAD -> feature) Commit 2
+* cab6e1b (origin/master) master : initial commit
+
+//Create Git Branch from Tag
+$ git checkout -b <branch_name> <tag_name>
+
+//list your existing tags, you can use the “git tag” command
+$ git tag
+v1.0
+
+//you have identified your tag, you can create a new branch from it using the “git checkout” command.
+$ git checkout -b feature v1.0

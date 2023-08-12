@@ -1,0 +1,45 @@
+//descargar imagen 
+docker run ubuntu
+
+//ejecutar con terminal interactiva
+docker run -it ubuntu bash
+
+//construir imagen
+docker build . //el punto es decir que contruya una imagen donde se hubique el dockerfile, en este caso esta en la raiz
+
+//listar imagenes
+docker images
+//copiar IMAGE ID
+8d5263fde273
+
+//ejecutar
+docker run 8d5263fde273
+//ejecutar imagen con puesto
+    puerto externo:interno(el que usa la app), el externo puede ser cualquiera	
+docker run -p 8001:8001 id
+
+
+//listar contenedores
+docker ps
+
+//detener contenerdor
+docker stop [name/id]
+
+//darle un tag a la imagen o volver a generar la imagen despues de un cambio en el codigo
+docker build -t usuarios .
+
+
+//regenerar imagen despues de agregar cambios en el codigo del proyecto
+//cada vez que se regenera la imagen se deben hacer dos cosas
+1. generar el jar
+.\mvnw.cmd clean package -DskipTests
+
+2. construir la imagen
+docker build -t usuarios .
+
+//despues de optimizar \Dockerfile
+//desde la raiz del proyecto se le debe pasar el path donde está el dockerfile -> . \msvc-usuarios\Dockerfile
+docker build -t usuarios -f .\msvc-usuarios\Dockerfile .
+
+//levantar imagen (puerto imagen)
+docker run -p 8001:8001 usuarios

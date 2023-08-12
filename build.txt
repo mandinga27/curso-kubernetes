@@ -1,0 +1,23 @@
+//desde carpeta proyecto
+.\mvnw.cmd clean package //clean elimina todas las compilaciones 
+//debe estar homologado el jdk en project structure y en los poms.xml
+
+//decompilar el jar
+java -jar .\target\msvc-usuarios-0.0.1-SNAPSHOT.jar
+
+//para cada cambio en el codigo se debe volver a generar el jar
+
+1. generar jar y saltarse los test
+.\mvnw.cmd clean package -DskipTests
+
+//eliminar directorio target (es donde se genera el jar del snapchot)
+.\mvnw.cmd clean
+
+2. volver a crear la imagen
+docker build .
+
+3. correr imagen 
+docker run ee4ee70bc830
+
+
+
