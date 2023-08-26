@@ -36,7 +36,7 @@ WORKDIR /app
 COPY --from=builder /app/msvc-cursos/target/msvc-cursos-0.0.1-SNAPSHOT.jar .
 
 #el puerto de la app es el 8001
-EXPOSE 8001
+EXPOSE 8002
 
 #levantar la app cuando se le velanta un contenedor, busca un entry poiny
 #comandos separados por coma
