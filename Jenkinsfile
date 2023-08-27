@@ -38,7 +38,11 @@ pipeline {
       }
       */
     }
-
+    stage('Build') {
+        withMaven(maven: 'mvn') {
+            sh "mvn clean package"
+        }
+    }
     stage('sonar Cloud') {
         steps {
           withSonarQubeEnv(installationName: 'sonar-cloud') {
