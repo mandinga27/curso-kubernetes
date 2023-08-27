@@ -2,7 +2,9 @@
 
 pipeline {
   agent any
-  //tools {nodejs "node"}
+  tools {
+          maven 'maven3.9.4'
+  }
   stages {
     stage('Cloning') {
         steps {
