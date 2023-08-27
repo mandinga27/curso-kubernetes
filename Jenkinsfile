@@ -40,9 +40,7 @@ pipeline {
     }
     stage('Build') {
         steps {
-            withMaven(maven: 'mvn') {
                 sh 'mvn -Dmaven.test.failure.ignore=true install'
-            }
             post {
                 succes {
                     junit 'target/surefire-reports/**/*.xml'
