@@ -36,7 +36,7 @@ pipeline {
       }
       */
     }
-    /*
+
     stage('sonar Cloud') {
         steps {
           withSonarQubeEnv(installationName: 'sonar-cloud') {
@@ -51,7 +51,7 @@ pipeline {
           }
       }
     }
-    */
+
     stage('prueba library') {
       steps{
         script{
