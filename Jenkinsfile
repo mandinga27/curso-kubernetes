@@ -6,9 +6,9 @@ pipeline {
   stages {
     stage('Cloning') {
         steps {
-          git branch: 'feature-docker-test-py',
+          git branch: 'develop',
           credentialsId: 'jenkins-ec2',
-          url: 'https://github.com/RoboticSystemsSpA/Jetson.git'
+          url: 'https://github.com/mandinga27/curso-kubernetes.git'
 
           script {
 		        try {
