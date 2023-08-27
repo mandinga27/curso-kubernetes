@@ -39,8 +39,10 @@ pipeline {
       */
     }
     stage('Build') {
-        withMaven(maven: 'mvn') {
-            sh "mvn clean package"
+        steps {
+            withMaven(maven: 'mvn') {
+                sh "mvn clean package"
+            }
         }
     }
     stage('sonar Cloud') {
