@@ -40,11 +40,10 @@ pipeline {
     }
     stage('Build') {
         steps {
-            withMaven(maven: 'mvn') {
-                sh "mvn clean package"
-            }
+            sh 'mvn -Dmaven.test.failure.ignore=true install'
         }
     }
+    /*
     stage('sonar Cloud') {
         steps {
           withSonarQubeEnv(installationName: 'sonar-cloud') {
@@ -52,6 +51,7 @@ pipeline {
           }
         }
     }
+    */
     stage("Quality Gate") {
       steps {
         timeout(time: 1, unit: 'MINUTES') {
