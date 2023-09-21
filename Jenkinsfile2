@@ -6,10 +6,11 @@ pipeline {
   stages {
     stage('Maven Build') {
       steps {
-        bat 'mvn --version'
+        sh 'mvn --version'
         //sh 'maven clean verify'
       }
     }
+    /*
     stage('Veracode Pipeline Scan') {
       steps {
         sh 'curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip'
@@ -40,6 +41,7 @@ pipeline {
                 }
             }
         }
+        */
 
   }
   post {
