@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Maven Build') {
       steps {
-        sh 'mvn --version'
+        bat 'mvn --version'
         //sh 'maven clean verify'
       }
     }
