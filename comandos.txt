@@ -27,3 +27,5 @@ docker run -p 8002:8002 --env-file .\msvc-cursos\.env -d --rm --name msvc-cursos
 docker stop msvc-usuarios
 
 docker stop msvc-cursos
+
+docker-compose down -v
