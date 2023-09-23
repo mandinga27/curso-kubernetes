@@ -1,8 +1,12 @@
+ARG MSVC_NAME=msvc-usuarios
+
 FROM openjdk:11.0.13-jdk-slim-buster as builder
 #dentro del dockerfile estamos en la raiz del proyecto
 
+ARG MSVC_NAME
+
 #carpeta de trabajo, ahora copiamos el pom de msvc-usuarios(build.gradle
-WORKDIR /app/msvc-usuarios
+WORKDIR /app/$MSVC_NAME
 #se copiara en la carpeta app que es estructura base de las imagenes
             #/ruta en nuestra maquina local   #. ruta en la imagen/contenedor
 
@@ -10,30 +14,38 @@ WORKDIR /app/msvc-usuarios
 COPY ./pom.xml /app
 
 #desde la raiz curso-kubernetes copiamos el proyecto completo, desde la raiz (./
-COPY ./msvc-usuarios/.mvn ./.mvn
+COPY ./$MSVC_NAME/.mvn ./.mvn
 # o ./target/msvc-usuarios-0.0.1-SNAPSHOT.jar/app
-COPY ./msvc-usuarios/mvnw .
+COPY ./$MSVC_NAME/mvnw .
 
-COPY ./msvc-usuarios/pom.xml .
+COPY ./$MSVC_NAME/pom.xml .
 
 #compilamos
 #empaque sin el codigo fuente y skipea los tests
 RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip && rm -r ./target/
 
 #copia la carpeta src en la imagen docker
-COPY ./msvc-usuarios/src ./src
+COPY ./$MSVC_NAME/src ./src
 
 RUN ./mvnw clean package -DskipTests
 
 #aca creamos una imagen a partir de una imagen
 FROM openjdk:11.0.13-jdk-slim-buster
 
+ARG MSVC_NAME
+
 WORKDIR /app
 
-COPY --from=builder /app/msvc-usuarios/target/msvc-usuarios-0.0.1-SNAPSHOT.jar .
+RUN mkdir ./logs
 
+ARG TARGET_FOLDER=/app/$MSVC_NAME/target
+
+COPY --from=builder /app/$MSVC_NAME/target/msvc-usuarios-0.0.1-SNAPSHOT.jar .
+
+ARG PORT_APP=8001
+ENV PORT $PORT_APP
 #el puerto de la app es el 8001
-EXPOSE 8001
+EXPOSE $PORT
 
 #levantar la app cuando se le velanta un contenedor, busca un entry poiny
 #comandos separados por coma

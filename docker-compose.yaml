@@ -13,7 +13,6 @@ services:
     networks:
       - spring
 
-
   msvc-cursos:
     container_name: msvc-cursos
     image: cursos:latest
@@ -22,6 +21,7 @@ services:
     env_file: ./msvc-cursos/.env
     depends_on:
       - postgres14
+      - msvc-usuarios
     restart: always
     networks:
       - spring
@@ -60,5 +60,6 @@ volumes:
     name: data-mysql
   data-postgres:
     name: data-postgres
+
 networks:
   spring:
