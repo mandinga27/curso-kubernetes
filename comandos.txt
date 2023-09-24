@@ -29,3 +29,11 @@ docker stop msvc-usuarios
 docker stop msvc-cursos
 
 docker-compose down -v
+
+
+//minikube
+minikube status
+minikube start
+minikube stop
+
+minikube start --driver=hyperv
