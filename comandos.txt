@@ -20,6 +20,10 @@ docker build -t usuarios . -f .\msvc-usuarios\Dockerfile
 
 docker build -t cursos . -f .\msvc-cursos\Dockerfile
 
+docker build -t cursos:latest_v1-2 . -f .\msvc-cursos\Dockerfile
+
+docker build -t usuarios:latest_v1-2 . -f .\msvc-usuarios\Dockerfile
+
 docker run -p 8001:8001 --env-file .\msvc-usuarios\.env -d --rm --name msvc-usuarios --network spring
 
 docker run -p 8002:8002 --env-file .\msvc-cursos\.env -d --rm --name msvc-cursos --network spring
