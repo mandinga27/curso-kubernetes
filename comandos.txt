@@ -40,4 +40,20 @@ minikube status
 minikube start
 minikube stop
 
+//si falla ->
+minikube delete
+
+//kubectl
+kubectl help
+kubectl get deployments
+kubectl get pods
+kubectl describe pods mysql8-59977b5746-8hqc7
+kubectl logs mysql8-59977b5746-8hqc7
+
+kubectl delete deployment mysql8
+
+
 minikube start --driver=hyperv
+
+//create
+kubectl create deployment mysql8 --image=mysql:8 --port=3306
