@@ -28,10 +28,24 @@ docker run -p 8001:8001 --env-file .\msvc-usuarios\.env -d --rm --name msvc-usua
 
 docker run -p 8002:8002 --env-file .\msvc-cursos\.env -d --rm --name msvc-cursos --network spring
 
+#crear tag imagen a repo
+docker tag usuarios mandinga27000/usuarios
+docker tag usuarios mandinga27000/curos
+
+# pushear cambios a repo docker hub
+docker push mandinga27000/usuarios
+
+#login
+docker login
+mandinga2700
+Coyote3014
+docker logout
+
 docker stop msvc-usuarios
 
 docker stop msvc-cursos
 
+docker-compose up
 docker-compose down -v
 
 
@@ -66,7 +80,7 @@ get pods
 kubectl describe pods mysql8-59977b5746-s65lk
 kubectl logs mysql8-59977b5746-s65lk
 
-kubectl delete deployment mysql8
+kubectl delete deployment mysql8 -> se elimina el pod
 
 //se resuelve crear archivo de configuracion
 kubectl create deployment mysql8 --image=mysql:8 --port=3306 --dry-run=client -o yaml > deployment-mysql.yaml
