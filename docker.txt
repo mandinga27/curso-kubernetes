@@ -161,3 +161,14 @@ mysql -hmysql8 -uroot -p
 
 //conectarse al motor sql
 mysql -hmysql8 -uroot -p
+
+//docker compose
+docker-compose up -d
+docker-compose down -v (elimina los volumenes)
+
+//solo detener (recomemdable)
+docker-compose down
+docker-compose start
+
+
+//build imagen en docker-compose
