@@ -42,7 +42,7 @@ ARG TARGET_FOLDER=/app/$MSVC_NAME/target
 
 COPY --from=builder /app/$MSVC_NAME/target/msvc-usuarios-0.0.1-SNAPSHOT.jar .
 
-ARG PORT_APP=8001
+ARG PORT_APP=8000
 ENV PORT $PORT_APP
 #el puerto de la app es el 8001
 EXPOSE $PORT
