@@ -69,11 +69,11 @@ public class CursoController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/asignar-usuario/{id}")
-    public ResponseEntity<?> asignarUsuario(@RequestBody Usuario usuario, @PathVariable Long id) {
+    @PutMapping("/asignar-usuario/{cursoId}")
+    public ResponseEntity<?> asignarUsuario(@RequestBody Usuario usuario, @PathVariable Long cursoId) {
         Optional<Usuario> o;
         try {
-            o = service.asignarUsuario(usuario, id);
+            o = service.asignarUsuario(usuario, cursoId);
         } catch (FeignException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Collections.singletonMap("mensaje: ", "No existe el usuario por " +
