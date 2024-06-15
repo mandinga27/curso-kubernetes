@@ -1,6 +1,6 @@
 ARG MSVC_NAME=msvc-usuarios
 
-FROM openjdk:11.0.13-jdk-slim-buster as builder
+FROM openjdk:17-jdk-alpine as builder
 #dentro del dockerfile estamos en la raiz del proyecto
 
 ARG MSVC_NAME
@@ -30,7 +30,7 @@ COPY ./$MSVC_NAME/src ./src
 RUN ./mvnw clean package -DskipTests
 
 #aca creamos una imagen a partir de una imagen
-FROM openjdk:11.0.13-jdk-slim-buster
+FROM openjdk:17-jdk-alpine
 
 ARG MSVC_NAME
 

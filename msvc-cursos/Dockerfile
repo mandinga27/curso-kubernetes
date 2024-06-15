@@ -1,4 +1,4 @@
-FROM openjdk:11.0.13-jdk-slim-buster as builder
+FROM openjdk:17-jdk-alpine as builder
 #dentro del dockerfile estamos en la raiz del proyecto
 
 #carpeta de trabajo, ahora copiamos el pom de msvc-usuarios(build.gradle
@@ -29,7 +29,7 @@ COPY ./msvc-cursos/src ./src
 RUN ./mvnw clean package -DskipTests
 
 #aca creamos una imagen a partir de una imagen
-FROM openjdk:11.0.13-jdk-slim-buster
+FROM openjdk:17-jdk-alpine
 
 WORKDIR /app
 
