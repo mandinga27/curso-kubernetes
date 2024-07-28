@@ -171,4 +171,15 @@ docker-compose down
 docker-compose start
 
 
-//build imagen en docker-compose
+//build imagen en docker-compose (fuerza a construir las imagenes)
+docker-compose up --build -d
+
+//crear tag repostorio creada en docker hub
+docker tag curso-kubernetes-msvc-cursos mandinga2700/cursos
+docker tag curso-kubernetes-msvc-usuarios mandinga2700/usuarios
+
+//subir cambios
+
+docker login
+docker push mandinga2700/cursos
+docker push mandinga2700/usuarios
